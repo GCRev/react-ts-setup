@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # react
 printf "npm: installing react core packages\n"
 npm --no-audit install react react-dom
