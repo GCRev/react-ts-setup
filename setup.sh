@@ -297,16 +297,12 @@ npm --no-audit install --save-dev webpack webpack-cli @types/webpack webpack-dev
 printf "file: writing webpack.config.js\n"
 cat <<EOF > ./webpack.config.js
 const path = require('path')
-const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = {
   entry: './src/index.tsx',
   mode: 'development',
   plugins: [
-    new webpack.ProvidePlugin({
-      "React": "react"
-    }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
@@ -353,8 +349,10 @@ module.exports = {
     open: false,
     host: 'localhost',
     contentBase: './public',
-    writeToDisk: true,
-    port: 4001
+    port: 4001,
+    devMiddleware: {
+      writeToDisk: true
+    }
   }
 }
 EOF
